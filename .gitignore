@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+.env
+.env.*
+server/.env
+.env.local
+.env.*.local
+*.log
+coverage/
+.DS_Store
+.idea/
+.vscode/
+*.tgz

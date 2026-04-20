@@ -1,0 +1,237 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Mental Health Check-in API", "version": "1.0.0" },
+  "servers": [{ "url": "http://localhost:5000" }],
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "summary": "Register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "password"],
+                "properties": { "email": { "type": "string", "format": "email" }, "password": { "type": "string", "minLength": 8 } }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Created" }, "400": { "description": "Validation error" }, "409": { "description": "Email already registered" } }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "summary": "Login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "password"],
+                "properties": { "email": { "type": "string" }, "password": { "type": "string" } }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" }, "401": { "description": "Invalid credentials" } }
+      }
+    },
+    "/api/auth/logout": { "post": { "summary": "Logout", "responses": { "200": { "description": "OK" } } } },
+    "/api/auth/me": {
+      "get": {
+        "summary": "Current user",
+        "security": [{ "cookieAuth": [] }],
+        "responses": { "200": { "description": "OK" }, "401": { "description": "Unauthorized" } }
+      },
+      "patch": {
+        "summary": "Update profile / privacy",
+        "security": [{ "cookieAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "privacySettings": { "type": "object" },
+                  "password": { "type": "string", "minLength": 8 }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" }, "401": { "description": "Unauthorized" } }
+      }
+    },
+    "/api/moods": {
+      "post": {
+        "summary": "Create mood entry",
+        "security": [{ "cookieAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["moodScore"],
+                "properties": {
+                  "moodScore": { "type": "integer", "minimum": 1, "maximum": 10 },
+                  "notes": { "type": "string" },
+                  "tags": { "type": "array", "items": { "type": "string" } }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Created" }, "200": { "description": "Crisis modal payload if keywords detected" } }
+      },
+      "get": {
+        "summary": "List mood entries",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [
+          { "name": "from", "in": "query", "schema": { "type": "string", "format": "date-time" } },
+          { "name": "to", "in": "query", "schema": { "type": "string", "format": "date-time" } }
+        ],
+        "responses": { "200": { "description": "Array of entries" } }
+      }
+    },
+    "/api/moods/analytics": {
+      "get": {
+        "summary": "Mood analytics",
+        "security": [{ "cookieAuth": [] }],
+        "responses": { "200": { "description": "Weekly/monthly/insights" } }
+      }
+    },
+    "/api/moods/export/csv": {
+      "get": {
+        "summary": "Export mood history CSV",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [
+          { "name": "from", "in": "query", "schema": { "type": "string" } },
+          { "name": "to", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "CSV file" } }
+      }
+    },
+    "/api/posts": {
+      "post": {
+        "summary": "Create anonymous post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["content"],
+                "properties": {
+                  "content": { "type": "string" },
+                  "categoryTags": { "type": "array", "items": { "type": "string" } },
+                  "postOwnerToken": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Created" }, "200": { "description": "Crisis payload if keywords detected" } }
+      },
+      "get": {
+        "summary": "List posts",
+        "parameters": [
+          { "name": "page", "in": "query", "schema": { "type": "integer" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": { "200": { "description": "posts, total, page, limit" } }
+      }
+    },
+    "/api/posts/{id}": {
+      "get": {
+        "summary": "Get post and responses",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "post, responses" }, "404": { "description": "Not found" } }
+      }
+    },
+    "/api/posts/{id}/responses": {
+      "post": {
+        "summary": "Add response",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["content"],
+                "properties": { "content": { "type": "string" }, "responseOwnerToken": { "type": "string" } }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Created" }, "200": { "description": "Crisis payload if detected" } }
+      }
+    },
+    "/api/resources": {
+      "get": {
+        "summary": "List resources",
+        "parameters": [
+          { "name": "type", "in": "query", "schema": { "type": "string" } },
+          { "name": "cost", "in": "query", "schema": { "type": "string" } },
+          { "name": "availability", "in": "query", "schema": { "type": "string" } },
+          { "name": "language", "in": "query", "schema": { "type": "string" } },
+          { "name": "q", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "Array of resources" } }
+      }
+    },
+    "/api/resources/saved": {
+      "get": {
+        "summary": "Saved resources",
+        "security": [{ "cookieAuth": [] }],
+        "responses": { "200": { "description": "Array of resources" } }
+      }
+    },
+    "/api/resources/{id}": {
+      "get": {
+        "summary": "Get resource",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Resource" }, "404": { "description": "Not found" } }
+      }
+    },
+    "/api/resources/{id}/save": {
+      "post": {
+        "summary": "Save resource",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "OK" }, "404": { "description": "Not found" } }
+      }
+    },
+    "/api/flags": {
+      "post": {
+        "summary": "Report content",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["targetType", "targetId", "reason"],
+                "properties": {
+                  "targetType": { "type": "string", "enum": ["post", "response"] },
+                  "targetId": { "type": "string" },
+                  "reason": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Created" } }
+      }
+    },
+    "/api/crisis/resources": {
+      "get": {
+        "summary": "Crisis contacts and disclaimer",
+        "responses": { "200": { "description": "disclaimer, contacts" } }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": { "type": "apiKey", "in": "cookie", "name": "token" }
+    }
+  }
+}

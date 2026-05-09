@@ -41,7 +41,7 @@ export default function ResourceDirectory() {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ minHeight: '70vh' }}>
       <h1 className="page-title">Resource Directory</h1>
       <p className="text-muted">Find and save mental health resources. Crisis lines are on the Crisis page.</p>
 

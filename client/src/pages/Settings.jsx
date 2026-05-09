@@ -62,22 +62,22 @@ export default function Settings() {
         <form onSubmit={handleSavePrivacy}>
           <div className="form-group">
             <label>
+              Keep community posts anonymous
               <input
                 type="checkbox"
                 checked={privacy.anonymityInCommunity}
                 onChange={(e) => setPrivacy((p) => ({ ...p, anonymityInCommunity: e.target.checked }))}
               />
-              {' '}Keep community posts anonymous
             </label>
           </div>
           <div className="form-group">
             <label>
+              Allow anonymized data for improving the app (optional)
               <input
                 type="checkbox"
                 checked={privacy.dataSharingEnabled}
                 onChange={(e) => setPrivacy((p) => ({ ...p, dataSharingEnabled: e.target.checked }))}
               />
-              {' '}Allow anonymized data for improving the app (optional)
             </label>
           </div>
           <div className="form-group">

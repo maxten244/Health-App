@@ -276,6 +276,22 @@ textarea:focus-visible,
   gap: 4px;
 }
 
+.form-group label:has(input[type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: none;
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  color: var(--text);
+}
+.form-group label:has(input[type="checkbox"]) input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
 
 .nav {
   background: rgba(15, 15, 19, 0.8);
@@ -839,3 +855,4 @@ textarea:focus-visible,
 .btn + * {
   margin-top: 1.5rem;
 }
+

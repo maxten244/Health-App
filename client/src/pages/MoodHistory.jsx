@@ -61,33 +61,38 @@ export default function MoodHistory() {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ minHeight: '70vh' }}>
       <h1 className="page-title">Mood History</h1>
 
-      <div className="card filters">
-        <label htmlFor="filter-from">From</label>
-        <input
-          id="filter-from"
-          type="date"
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
-          aria-label="Filter from date"
-        />
-        <label htmlFor="filter-to">To</label>
-        <input
-          id="filter-to"
-          type="date"
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
-          aria-label="Filter to date"
-        />
-        <button type="button" className="btn btn-secondary" onClick={handleExportCsv} disabled={exporting}>
-          {exporting ? 'Exporting…' : 'Export CSV'}
-        </button>
-        <button type="button" className="btn btn-secondary" onClick={load} disabled={loading}>
+      <div className="card filters" style={{ justifyContent: 'space-between', alignItems: 'center', flexWrap: 'nowrap' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <label htmlFor="filter-from">From</label>
+          <input
+            id="filter-from"
+            type="date"
+            value={from}
+            onChange={(e) => setFrom(e.target.value)}
+            aria-label="Filter from date"
+          />
+          <label htmlFor="filter-to">To</label>
+          <input
+            id="filter-to"
+            type="date"
+            value={to}
+            onChange={(e) => setTo(e.target.value)}
+            aria-label="Filter to date"
+          />
+        </div>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          <button type="button" className="btn btn-secondary" style={{ width: '120px', whiteSpace: 'nowrap' }} onClick={handleExportCsv} disabled={exporting}>
+            { exporting ? 'Exporting…' : 'Export CSV'}
+          </button>
+          <button type="button" className="btn btn-secondary" style={{ width: '120px', whiteSpace: 'nowrap' }} onClick={load} disabled={loading}>
           Refresh
-        </button>
+          </button>
+        </div>
       </div>
+
       {error && <p className="error-message" role="alert">{error}</p>}
 
       {loading ? (

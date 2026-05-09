@@ -19,8 +19,8 @@ export default function CrisisPage() {
   }, []);
 
   return (
-    <div className="container" style={{ paddingTop: '2rem', paddingBottom: '6rem' }}>
-      <h1 className="page-title">Crisis Resources</h1>
+    <div className="container" style={{ minHeight: '70vh', paddingTop: '2rem' }}>
+    <h1 className="page-title">Crisis Resources</h1>
       <div className="card crisis-disclaimer-box" role="alert">
         <p><strong>This app is not emergency services.</strong></p>
         <p>{disclaimer || 'If you or someone you know is in immediate danger, please call 911 (US) or your local emergency number, or contact a crisis line below.'}</p>

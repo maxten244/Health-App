@@ -848,7 +848,9 @@ textarea:focus-visible,
   }
 }
 
-.card > .btn {
-  margin-top: 1.25rem;
-}
 
+
+
+.mood-chart h3 {
+  margin: -1rem 0 0.5rem;
+}

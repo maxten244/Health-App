@@ -50,13 +50,12 @@ export default function Community() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container" style={{ minHeight: '70vh' }}>
       <h1 className="page-title">Community Support</h1>
       <p className="text-muted">
-        Share anonymously and offer support. Posts are not linked to your account.
+      Share anonymously and offer support. Posts are not linked to your account.
       </p>
-      <Link to="/community/new" className="btn btn-primary">New post</Link>
-
+      <Link to="/community/new" className="btn btn-primary" style={{ marginBottom: '1.5rem', display: 'inline-flex' }}>New post</Link>
       {loading ? (
         <LoadingSpinner />
       ) : (

@@ -87,7 +87,7 @@ export default function Dashboard() {
           </div>
         </fieldset>
         {error && <p className="error-message" role="alert">{error}</p>}
-        <button type="submit" className="btn btn-primary" disabled={loading}>
+        <button type="submit" className="btn btn-primary" style={{ marginTop: '1.25rem' }} disabled={loading}>
           {loading ? 'Saving…' : 'Save mood'}
         </button>
       </form>

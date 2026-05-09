@@ -34,14 +34,7 @@ export default function Landing() {
           </ul>
         </div>
       </section>
-      <footer className="landing-footer">
-        <div className="container">
-          <p>
-            This app is not emergency services. If you’re in crisis, please use the crisis resources.
-          </p>
-          <Link to="/crisis" className="btn btn-crisis">Crisis resources</Link>
-        </div>
-      </footer>
+      
     </div>
   );
 }

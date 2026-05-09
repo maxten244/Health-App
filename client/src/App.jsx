@@ -34,7 +34,7 @@ export default function App() {
     <>
       <a href="#main-content" className="skip-to-content">Skip to main content</a>
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Layout><Landing /></Layout>} />
         <Route
           path="/login"
           element={(

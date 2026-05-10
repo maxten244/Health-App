@@ -1,25 +1,45 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { apiPatch } from '../services/api';
 
 export default function Settings() {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, logout } = useAuth();
+  const navigate = useNavigate();
   const [privacy, setPrivacy] = useState({
     anonymityInCommunity: true,
     dataSharingEnabled: false,
     visibility: 'private',
   });
+  const [displayName, setDisplayName] = useState(user?.displayName || 'User');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const [privacyMessage, setPrivacyMessage] = useState('');
+  const [nameMessage, setNameMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user?.privacySettings) {
       setPrivacy((p) => ({ ...p, ...user.privacySettings }));
     }
+    setDisplayName(user?.displayName || 'User');
   }, [user]);
+
+  const handleSaveName = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setNameMessage('');
+    try {
+      const data = await apiPatch('/api/auth/me', { displayName });
+      updateUser(data.user);
+      setNameMessage('Name updated.');
+    } catch (err) {
+      setNameMessage(err.message || 'Failed to save');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSavePrivacy = async (e) => {
     e.preventDefault();
@@ -62,7 +82,12 @@ export default function Settings() {
 
   return (
     <div className="container">
-      <h1 className="page-title">Settings</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.75rem' }}>
+        <h1 className="page-title" style={{ margin: 0 }}>Settings</h1>
+        
+      </div>
+
+
 
       <section className="card" aria-labelledby="privacy-heading">
         <h2 id="privacy-heading">Privacy & anonymity</h2>
@@ -143,6 +168,15 @@ export default function Settings() {
           </button>
         </form>
       </section>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '2rem' }}>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => { logout(); navigate('/'); }}
+        >
+          Log out
+        </button>
+      </div>
     </div>
   );
 }

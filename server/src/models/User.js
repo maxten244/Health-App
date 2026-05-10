@@ -14,10 +14,12 @@ const userSchema = new mongoose.Schema(
   {
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     passwordHash: { type: String, required: true },
+    displayName: { type: String, default: 'User', trim: true, maxlength: 50 },
     privacySettings: { type: privacySettingsSchema, default: () => ({}) },
   },
   { timestamps: true }
 );
+
 
 userSchema.methods.comparePassword = async function (candidate) {
   return bcrypt.compare(candidate, this.passwordHash);

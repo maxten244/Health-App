@@ -28,7 +28,8 @@ export default function Signup() {
 
   return (
     <div style={{ width: '560px', minWidth: '320px', margin: '0 auto', padding: '3rem 24px 0' }}>
-      <Link to="/" style={{ display: 'inline-block', marginBottom: '1rem', color: 'white' }}>← Back</Link>        <h1 className="page-title" id="signup-heading">Sign up</h1>
+      <Link to="/" className="auth-link" style={{ display: 'inline-block', marginBottom: '1rem' }}>← Back</Link>
+      <h1 className="page-title" id="signup-heading">Sign up</h1>
       <form onSubmit={handleSubmit} className="card" aria-labelledby="signup-heading">
         <div className="form-group">
           <label htmlFor="signup-email">Email</label>
@@ -58,8 +59,8 @@ export default function Signup() {
           {loading ? 'Creating account…' : 'Sign up'}
         </button>
       </form>
-      <p style={{ marginTop: '1rem' }}>
-        Already have an account? <Link to="/login">Log in</Link>
+      <p style={{ marginTop: '1rem', color: 'white' }}>
+        Already have an account? <Link to="/login" className="auth-link" style={{ textDecoration: 'underline' }}>Log in</Link>
       </p>
     </div>
   );

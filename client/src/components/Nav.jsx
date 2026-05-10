@@ -38,11 +38,6 @@ export default function Nav() {
             <li><Link to="/resources" onClick={() => setMenuOpen(false)}>Resources</Link></li>
             <li><Link to="/crisis" onClick={() => setMenuOpen(false)}>Crisis</Link></li>
             <li><Link to="/settings" onClick={() => setMenuOpen(false)}>Settings</Link></li>
-            <li>
-              <button type="button" className="btn btn-secondary" onClick={handleLogout} aria-label="Log out">
-                Log out
-              </button>
-            </li>
           </ul>
         ) : (
           <ul className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>

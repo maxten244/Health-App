@@ -63,7 +63,6 @@ body::before {
   z-index: 1;
 }
 
-
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -105,7 +104,6 @@ textarea:focus-visible,
   outline-offset: 3px;
 }
 
-
 .loading-spinner {
   display: flex;
   align-items: center;
@@ -127,7 +125,6 @@ textarea:focus-visible,
   to { transform: rotate(360deg); }
 }
 
-
 .container {
   max-width: 860px;
   margin: 0 auto;
@@ -143,7 +140,6 @@ textarea:focus-visible,
   color: var(--text);
   letter-spacing: -0.02em;
 }
-
 
 .btn {
   display: inline-flex;
@@ -203,7 +199,6 @@ textarea:focus-visible,
   transform: translateY(-1px);
 }
 
-
 .card {
   background: var(--surface);
   border-radius: var(--radius-lg);
@@ -217,7 +212,6 @@ textarea:focus-visible,
   border-color: var(--border-hover);
   box-shadow: var(--shadow);
 }
-
 
 .form-group {
   margin-bottom: 1.25rem;
@@ -285,6 +279,7 @@ textarea:focus-visible,
   letter-spacing: 0;
   color: var(--text);
 }
+
 .form-group label:has(input[type="checkbox"]) input[type="checkbox"] {
   width: 18px;
   height: 18px;
@@ -308,6 +303,7 @@ textarea:focus-visible,
   align-items: center;
   justify-content: space-between;
   padding: 1rem 24px;
+  position: relative;
 }
 
 .nav-logo {
@@ -344,6 +340,25 @@ textarea:focus-visible,
   background: var(--border);
 }
 
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
 
 .main-content {
   padding: 2.5rem 0;
@@ -388,7 +403,6 @@ textarea:focus-visible,
   opacity: 0.6;
 }
 
-
 .crisis-button-wrapper {
   position: fixed;
   bottom: 28px;
@@ -411,7 +425,6 @@ textarea:focus-visible,
   transform: translateY(-2px);
   box-shadow: 0 8px 28px var(--crisis-glow), 0 0 0 1px rgba(240,107,107,0.3);
 }
-
 
 .modal-overlay {
   position: fixed;
@@ -467,7 +480,6 @@ textarea:focus-visible,
   font-size: 0.95rem;
 }
 
-
 .mood-slider-wrap {
   margin: 1.5rem 0;
 }
@@ -491,7 +503,6 @@ textarea:focus-visible,
   font-weight: 700;
   color: var(--accent);
 }
-
 
 .mood-card-header {
   display: flex;
@@ -538,7 +549,6 @@ textarea:focus-visible,
   border: 1px solid rgba(124, 106, 247, 0.15);
 }
 
-
 .chart-bars {
   display: flex;
   align-items: flex-end;
@@ -573,7 +583,6 @@ textarea:focus-visible,
   margin-top: 0.3rem;
   color: var(--text-muted);
 }
-
 
 .post-card-title a {
   color: var(--text);
@@ -616,7 +625,6 @@ textarea:focus-visible,
   opacity: 0.7;
 }
 
-
 .response-form textarea {
   width: 100%;
   padding: 12px;
@@ -643,7 +651,6 @@ textarea:focus-visible,
   margin: 0 0 0.5rem;
   opacity: 0.7;
 }
-
 
 .resource-card h3 {
   margin: 0 0 0.25rem;
@@ -694,7 +701,6 @@ textarea:focus-visible,
 .text-muted {
   color: var(--text-muted);
 }
-
 
 .landing-hero {
   padding: 5rem 0 3rem;
@@ -754,7 +760,6 @@ textarea:focus-visible,
   margin-top: 0.5rem;
 }
 
-
 .tag-chips {
   display: flex;
   flex-wrap: wrap;
@@ -784,16 +789,15 @@ textarea:focus-visible,
   color: var(--accent);
 }
 
-
 .filters {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   flex-wrap: nowrap;
 }
+
 .filters label { margin: 0; color: var(--text-muted); font-size: 0.88rem; }
 .filters input, .filters select { width: auto; min-width: 120px; }
-
 
 .crisis-disclaimer-box {
   border-left: 3px solid var(--crisis);
@@ -813,6 +817,9 @@ textarea:focus-visible,
   border-bottom: 1px solid var(--border);
 }
 
+.mood-chart h3 {
+  margin: -1rem 0 0.5rem;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -824,8 +831,40 @@ textarea:focus-visible,
   }
 }
 
+@media (max-width: 768px) {
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    padding: 1rem 24px;
+    gap: 0.5rem;
+    z-index: 50;
+  }
+
+  .nav-links--open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 10px 12px;
+    width: 100%;
+  }
+}
 
 @media (max-width: 640px) {
+  .landing-hero {
+    padding: 5rem 0 3rem;
+  }
+
   .landing-hero h1 {
     font-size: 2.2rem;
   }
@@ -835,7 +874,7 @@ textarea:focus-visible,
   }
 
   .container {
-    padding: 0 16px;
+    padding: 16px;
   }
 
   .modal-content {
@@ -846,11 +885,4 @@ textarea:focus-visible,
     bottom: 16px;
     right: 16px;
   }
-}
-
-
-
-
-.mood-chart h3 {
-  margin: -1rem 0 0.5rem;
 }

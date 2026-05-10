@@ -55,8 +55,7 @@ export default function Community() {
       <p className="text-muted">
       Share anonymously and offer support. Posts are not linked to your account.
       </p>
-      <Link to="/community/new" className="btn btn-primary" style={{ marginBottom: '1.5rem', display: 'inline-flex' }}>New post</Link>
-      {loading ? (
+      <Link to="/community/new" className="btn btn-primary" style={{ marginBottom: '1.5rem', display: 'inline-flex', textDecoration: 'none' }}>New post</Link>      {loading ? (
         <LoadingSpinner />
       ) : (
         <>

@@ -64,31 +64,35 @@ export default function MoodHistory() {
     <div className="container" style={{ minHeight: '70vh' }}>
       <h1 className="page-title">Mood History</h1>
 
-      <div className="card filters" style={{ justifyContent: 'space-between', alignItems: 'center', flexWrap: 'nowrap' }}>
-  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <label htmlFor="filter-from">From</label>
-          <input
-            id="filter-from"
-            type="date"
-            value={from}
-            onChange={(e) => setFrom(e.target.value)}
-            aria-label="Filter from date"
-          />
-          <label htmlFor="filter-to">To</label>
-          <input
-            id="filter-to"
-            type="date"
-            value={to}
-            onChange={(e) => setTo(e.target.value)}
-            aria-label="Filter to date"
-          />
+      <div className="card filters" style={{ justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <label htmlFor="filter-from">From</label>
+            <input
+              id="filter-from"
+              type="date"
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
+              aria-label="Filter from date"
+            />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <label htmlFor="filter-to">To</label>
+            <input
+              id="filter-to"
+              type="date"
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+              aria-label="Filter to date"
+            />
+          </div>
         </div>
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'flex-end', width: '100%' }}>
           <button type="button" className="btn btn-secondary" style={{ width: '120px', whiteSpace: 'nowrap' }} onClick={handleExportCsv} disabled={exporting}>
-            { exporting ? 'Exporting…' : 'Export CSV'}
+            {exporting ? 'Exporting…' : 'Export CSV'}
           </button>
           <button type="button" className="btn btn-secondary" style={{ width: '120px', whiteSpace: 'nowrap' }} onClick={load} disabled={loading}>
-          Refresh
+            Refresh
           </button>
         </div>
       </div>

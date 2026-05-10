@@ -27,8 +27,8 @@ export default function Signup() {
   };
 
   return (
-    <div className="container" style={{ paddingTop: '3rem', maxWidth: '420px' }}>
-      <h1 className="page-title" id="signup-heading">Sign up</h1>
+    <div style={{ width: '560px', minWidth: '320px', margin: '0 auto', padding: '3rem 24px 0' }}>
+      <Link to="/" style={{ display: 'inline-block', marginBottom: '1rem', color: 'white' }}>← Back</Link>        <h1 className="page-title" id="signup-heading">Sign up</h1>
       <form onSubmit={handleSubmit} className="card" aria-labelledby="signup-heading">
         <div className="form-group">
           <label htmlFor="signup-email">Email</label>

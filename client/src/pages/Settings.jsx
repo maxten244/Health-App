@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { apiGet, apiPatch } from '../services/api';
+import { apiPatch } from '../services/api';
 
 export default function Settings() {
   const { user, updateUser } = useAuth();
@@ -10,7 +10,9 @@ export default function Settings() {
     visibility: 'private',
   });
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [privacyMessage, setPrivacyMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -22,13 +24,13 @@ export default function Settings() {
   const handleSavePrivacy = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
+    setPrivacyMessage('');
     try {
       const data = await apiPatch('/api/auth/me', { privacySettings: privacy });
       updateUser(data.user);
-      setMessage('Settings saved.');
+      setPrivacyMessage('Settings saved.');
     } catch (err) {
-      setMessage(err.message || 'Failed to save');
+      setPrivacyMessage(err.message || 'Failed to save');
     } finally {
       setLoading(false);
     }
@@ -40,11 +42,16 @@ export default function Settings() {
       setMessage('Password must be at least 8 characters');
       return;
     }
+    if (password !== confirmPassword) {
+      setMessage('Passwords do not match');
+      return;
+    }
     setLoading(true);
     setMessage('');
     try {
       await apiPatch('/api/auth/me', { password });
       setPassword('');
+      setConfirmPassword('');
       setMessage('Password updated.');
     } catch (err) {
       setMessage(err.message || 'Failed to update password');
@@ -59,6 +66,11 @@ export default function Settings() {
 
       <section className="card" aria-labelledby="privacy-heading">
         <h2 id="privacy-heading">Privacy & anonymity</h2>
+        {privacyMessage && (
+          <p className={privacyMessage.startsWith('Failed') ? 'error-message' : ''} role="status">
+            {privacyMessage}
+          </p>
+        )}
         <form onSubmit={handleSavePrivacy}>
           <div className="form-group">
             <label>
@@ -100,6 +112,11 @@ export default function Settings() {
 
       <section className="card" aria-labelledby="password-heading">
         <h2 id="password-heading">Change password</h2>
+        {message && (
+          <p className={message.startsWith('Failed') || message.startsWith('Password') ? 'error-message' : ''} role="status">
+            {message}
+          </p>
+        )}
         <form onSubmit={handlePassword}>
           <div className="form-group">
             <label htmlFor="new-password">New password (min 8 characters)</label>
@@ -111,13 +128,21 @@ export default function Settings() {
               minLength={8}
             />
           </div>
-          <button type="submit" className="btn btn-secondary" disabled={loading || !password}>
+          <div className="form-group">
+            <label htmlFor="confirm-password">Confirm new password</label>
+            <input
+              id="confirm-password"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              minLength={8}
+            />
+          </div>
+          <button type="submit" className="btn btn-secondary" disabled={loading || !password || !confirmPassword}>
             Update password
           </button>
         </form>
       </section>
-
-      {message && <p className={message.startsWith('Failed') ? 'error-message' : ''} role="status">{message}</p>}
     </div>
   );
 }

@@ -9,10 +9,7 @@ export default function Landing() {
           <p className="lead">
             A private, accessible space to track your mood, connect with supportive community, and find resources. Your data stays yours.
           </p>
-          <nav aria-label="Get started">
-            <Link to="/signup" className="btn btn-primary">Sign up</Link>
-            <Link to="/login" className="btn btn-secondary">Log in</Link>
-          </nav>
+         
         </div>
       </header>
       <section className="landing-section" aria-labelledby="privacy-heading">

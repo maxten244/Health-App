@@ -28,7 +28,7 @@ export default function ResponseForm({ onSubmit, disabled, placeholder = 'Write 
       <p id="response-char-hint" className="char-count" aria-live="polite">
         {content.length} / 2000
       </p>
-      <button type="submit" className="btn btn-primary" disabled={disabled || !content.trim()}>
+      <button type="submit" className="btn btn-primary" style={{ marginBottom: '1.5rem' }} disabled={disabled || !content.trim()}>
         Send support
       </button>
     </form>

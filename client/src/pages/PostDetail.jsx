@@ -64,8 +64,7 @@ export default function PostDetail() {
 
   return (
     <div className="container">
-      <Link to="/community">← Back to community</Link>
-      <article className="card post-detail">
+      <Link to="/community" style={{ display: 'inline-block', marginBottom: '1.5rem' }}>← Back to community</Link>      <article className="card post-detail">
         <p className="post-content">{post.content}</p>
         {post.categoryTags?.length > 0 && (
           <ul className="post-tags">

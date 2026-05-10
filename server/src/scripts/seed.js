@@ -52,7 +52,7 @@ const resources = [
   { name: 'Wysa', type: 'app', description: 'AI mental wellness chatbot', cost: 'sliding', availability: '24/7', languages: ['English'], website: 'https://www.wysa.io', isCrisis: false },
   { name: 'Happify', type: 'app', description: 'Science-based activities for stress and anxiety', cost: 'sliding', availability: '24/7', languages: ['English'], website: 'https://www.happify.com', isCrisis: false },
   { name: 'Insight Timer', type: 'app', description: 'Free meditation and sleep library', cost: 'free', availability: '24/7', languages: ['Multiple'], website: 'https://insighttimer.com', isCrisis: false },
-  { name: 'What's Up?', type: 'app', description: 'Coping strategies and grounding', cost: 'free', availability: '24/7', languages: ['English'], isCrisis: false },
+  { name: 'Whats Up?', type: 'app', description: 'Coping strategies and grounding', cost: 'free', availability: '24/7', languages: ['English'], isCrisis: false },
   { name: 'Moodpath', type: 'app', description: 'Mood tracking and mental health screening', cost: 'free', availability: '24/7', languages: ['English'], website: 'https://moodpath.app', isCrisis: false },
   { name: 'Daylio', type: 'app', description: 'Mood and activity diary', cost: 'free', availability: '24/7', languages: ['Multiple'], website: 'https://daylio.net', isCrisis: false },
   { name: 'Campus Mindfulness Program', type: 'campus', contactInfo: 'mindfulness@campus.edu', description: 'Free drop-in meditation and workshops', hours: 'Wed 12pm', cost: 'free', availability: 'weekdays', languages: ['English'], isCrisis: false },
@@ -69,9 +69,9 @@ const resources = [
   { name: 'BlackLine', type: 'hotline', contactInfo: '1-800-604-5841', description: 'Crisis support by and for Black community', hours: '24/7', cost: 'free', availability: '24/7', languages: ['English'], isCrisis: true },
   { name: 'National Council for Behavioral Health', type: 'other', description: 'Find local mental health providers', cost: 'unknown', availability: 'varies', languages: ['English'], website: 'https://www.thenationalcouncil.org', isCrisis: false },
   { name: 'GoodTherapy', type: 'therapy', description: 'Find therapists and explore therapy types', cost: 'unknown', availability: 'varies', languages: ['English'], website: 'https://www.goodtherapy.org', isCrisis: false },
-  { name: 'Inclusive Therapists', type: 'therapy', description: 'Find culturally responsive and LGBTQ+ affirming therapists', cost: 'varies', availability: 'varies', languages: ['English'], website: 'https://www.inclusivetherapists.com', isCrisis: false },
-  { name: 'Therapy for Black Girls', type: 'therapy', description: 'Directory and podcast for Black women', cost: 'varies', availability: 'varies', languages: ['English'], website: 'https://therapyforblackgirls.com', isCrisis: false },
-  { name: 'Latinx Therapy', type: 'therapy', description: 'Directory of Latinx therapists', cost: 'varies', availability: 'varies', languages: ['English', 'Spanish'], website: 'https://www.latinxtherapy.com', isCrisis: false },
+  { name: 'Inclusive Therapists', type: 'therapy', description: 'Find culturally responsive and LGBTQ+ affirming therapists', cost: 'unknown', availability: 'varies', languages: ['English'], website: 'https://www.inclusivetherapists.com', isCrisis: false },
+  { name: 'Therapy for Black Girls', type: 'therapy', description: 'Directory and podcast for Black women', cost: 'unknown', availability: 'varies', languages: ['English'], website: 'https://therapyforblackgirls.com', isCrisis: false },
+  { name: 'Latinx Therapy', type: 'therapy', description: 'Directory of Latinx therapists', cost: 'unknown', availability: 'varies', languages: ['English', 'Spanish'], website: 'https://www.latinxtherapy.com', isCrisis: false },
   { name: 'Asian Mental Health Collective', type: 'other', description: 'Resources and directory for AAPI mental health', cost: 'free', availability: '24/7', languages: ['English'], website: 'https://www.asianmhc.org', isCrisis: false },
 ];
 

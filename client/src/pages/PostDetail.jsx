@@ -60,11 +60,19 @@ export default function PostDetail() {
   };
 
   if (loading) return <LoadingSpinner />;
-  if (!post) return <div className="container"><p>Post not found.</p><Link to="/community">Back to community</Link></div>;
+  if (!post) return (
+    <div className="container">
+      <p>Post not found.</p>
+      <Link to="/community" className="back-link">Back to community</Link>
+    </div>
+  );
 
   return (
     <div className="container">
-      <Link to="/community" style={{ display: 'inline-block', marginBottom: '1.5rem' }}>← Back to community</Link>      <article className="card post-detail">
+      <Link to="/community" className="back-link" style={{ display: 'inline-block', marginBottom: '1.5rem' }}>
+        ← Back to community
+      </Link>
+      <article className="card post-detail">
         <p className="post-content">{post.content}</p>
         {post.categoryTags?.length > 0 && (
           <ul className="post-tags">

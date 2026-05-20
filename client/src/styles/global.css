@@ -769,6 +769,11 @@ textarea:focus-visible,
   text-decoration: none;
 }
 
+.auth-footer {
+  margin-top: 1rem;
+  color: var(--text);
+}
+
 .back-link {
   color: var(--text);
   text-decoration: none;

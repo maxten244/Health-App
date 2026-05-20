@@ -10,7 +10,7 @@ export default function Landing() {
         <div className="container">
           <h1>Mental Health Check-in</h1>
           <p className="lead">
-            A private, accessible space to track your mood, connect with supportive community, and find resources. Your data stays yours.
+            A private, accessible space to track your mood and connect with a supportive community. Your data stays yours.
           </p>
           {!user && (
             <nav aria-label="Get started">
@@ -21,7 +21,7 @@ export default function Landing() {
           {user && (
             <nav aria-label="Continue">
               <Link to="/dashboard" className="btn btn-primary">Log today's mood</Link>
-              <Link to="/resources" className="btn btn-secondary">Browse resources</Link>
+              <Link to="/community" className="btn btn-secondary">Community</Link>
             </nav>
           )}
         </div>
@@ -44,7 +44,7 @@ export default function Landing() {
             <div className="landing-how-step">
               <span className="landing-how-number">3</span>
               <h3>Find support</h3>
-              <p>Browse resources, connect with the community, or reach out to a crisis line — all in one place.</p>
+              <p>Connect with the community or reach out to a crisis line — all in one place.</p>
             </div>
           </div>
         </div>
@@ -65,9 +65,9 @@ export default function Landing() {
               <p>Post and respond anonymously. No one can link posts back to your account.</p>
             </div>
             <div className="landing-feature-card">
-              <span className="landing-feature-icon">📚</span>
-              <h3>Resources</h3>
-              <p>Browse and save mental health resources — hotlines, therapy, apps, and more.</p>
+              <span className="landing-feature-icon">🆘</span>
+              <h3>Crisis support</h3>
+              <p>Access crisis hotlines and support contacts whenever you need them.</p>
             </div>
             <div className="landing-feature-card">
               <span className="landing-feature-icon">🔒</span>

@@ -58,7 +58,7 @@ export default function Login() {
           {loading ? 'Logging in…' : 'Log in'}
         </button>
       </form>
-      <p style={{ marginTop: '1rem', color: 'white' }}>
+      <p className="auth-footer">
         Don't have an account? <Link to="/signup" className="auth-link" style={{ textDecoration: 'underline' }}>Sign up</Link>
       </p>
     </div>

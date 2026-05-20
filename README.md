@@ -31,4 +31,3 @@ COOKIE_DOMAIN=localhost
 ```bash
 npm run dev
 ```
-

@@ -12,6 +12,7 @@ import Community from './pages/Community';
 import CommunityNew from './pages/CommunityNew';
 import PostDetail from './pages/PostDetail';
 import CrisisPage from './pages/CrisisPage';
+import NotFound from './pages/NotFound';
 import Settings from './pages/Settings';
 
 function ProtectedRoute({ children }) {
@@ -99,7 +100,8 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/404" element={<Layout><NotFound /></Layout>} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
       <CrisisButton />
       <CrisisModal />

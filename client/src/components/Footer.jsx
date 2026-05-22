@@ -9,7 +9,6 @@ export default function Footer() {
         </p>
         <nav aria-label="Footer">
           <Link to="/crisis">Crisis resources</Link>
-          <Link to="/resources">Resource directory</Link>
           <Link to="/settings">Settings</Link>
         </nav>
         <p className="footer-copy">&copy; Mental Health Check-in. Your data is private and secure.</p>

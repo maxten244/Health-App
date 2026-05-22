@@ -11,7 +11,6 @@ import MoodHistory from './pages/MoodHistory';
 import Community from './pages/Community';
 import CommunityNew from './pages/CommunityNew';
 import PostDetail from './pages/PostDetail';
-import ResourceDirectory from './pages/ResourceDirectory';
 import CrisisPage from './pages/CrisisPage';
 import Settings from './pages/Settings';
 
@@ -88,14 +87,6 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Layout><PostDetail /></Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/resources"
-          element={
-            <ProtectedRoute>
-              <Layout><ResourceDirectory /></Layout>
             </ProtectedRoute>
           }
         />
